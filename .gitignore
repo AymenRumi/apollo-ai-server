@@ -164,3 +164,4 @@ cython_debug/
 data/cognitive_data/HubbleCQA.zip
 
 launch.json
+.DS_Store
