@@ -4,6 +4,6 @@
 
 ## PyInstaller commands
 ```bash
-sh scripts/create_exec.sh
-./dist/your_project_name
+sh scripts/create_exec.sh <your_project_name>
+./dist/<your_project_name>
 ```
