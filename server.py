@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI
 
 from src.db import create_db
-from src.routes.db import db_api
+from src.routes.db_route import db_api
 from src.settings import FastAPISettings
 
 

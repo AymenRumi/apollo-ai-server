@@ -1,1 +1,1 @@
-from .data_interface import IRepository
+from .repository_interface import IRepository
