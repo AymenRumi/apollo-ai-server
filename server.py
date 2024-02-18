@@ -16,9 +16,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-
 app.include_router(db_api)
-
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=available_port())
