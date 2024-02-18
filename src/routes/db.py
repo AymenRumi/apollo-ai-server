@@ -1,11 +1,13 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
-db_api = APIRouter(tags=["Db"])
+from src.interfaces import IRepository
+from src.repositories.sqlite_repository import get_conversation_repository
+
+db_api = APIRouter(tags=["SQLite"])
 
 
-@db_api.get("/")
-def home():
+@db_api.post("/conversation")
+def conversation(reposity: IRepository = Depends(get_conversation_repository)):
+    reposity.add()
     return JSONResponse(content={"success": True}, status_code=200)
-
-

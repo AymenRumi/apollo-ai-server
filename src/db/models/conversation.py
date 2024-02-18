@@ -12,11 +12,12 @@ class Conversation(Base):
     id = Column(Integer, primary_key=True, index=True)
     time_created = Column(DateTime, default=datetime.utcnow())
     summary = Column(String, default="")
-    messages = relationship("Message", back_populates="conversation")
+    requests = relationship("Request", back_populates="conversation")
 
 
 class Request(Base):
     __tablename__ = "requests"
+
     id = Column(Integer, primary_key=True)
     user = Column(String)
     time = Column(DateTime, default=datetime.utcnow)
@@ -29,6 +30,7 @@ class Request(Base):
 
 class Response(Base):
     __tablename__ = "responses"
+
     id = Column(Integer, primary_key=True)
     user = Column(String)
     time = Column(DateTime, default=datetime.utcnow)
