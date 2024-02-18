@@ -11,8 +11,10 @@ class ConversationRepository(IRepository):
         self.session = session
 
     def add(self):
-        self.session.add(Conversation(summary="New conversation summary"))
+        entry = Conversation()
+        self.session.add(entry)
         self.session.commit()
+        return entry.id
 
     def get(self, id):
         return Conversation.query.filter_by(id=id).first()
