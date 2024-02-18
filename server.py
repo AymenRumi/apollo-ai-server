@@ -1,5 +1,3 @@
-from contextlib import asynccontextmanager
-
 import uvicorn
 from fastapi import FastAPI
 
@@ -7,14 +5,15 @@ from scripts import available_port
 from src.db import create_db
 from src.routes.db import db_api
 
+app = FastAPI()
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
+
+@app.on_event("startup")
+async def app_startup():
     create_db()
-    yield
 
 
-app = FastAPI(lifespan=lifespan).include_router(db_api)
+app.include_router(db_api)
 
 
 if __name__ == "__main__":
