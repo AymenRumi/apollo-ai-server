@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 
 from src.interfaces import IRepository
-from src.repositories.sqlite_repository import get_conversation_repository
+from src.repositories.conversation_repository import get_conversation_repository
 
 db_api = APIRouter(tags=["SQLite"])
 

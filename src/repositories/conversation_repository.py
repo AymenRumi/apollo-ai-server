@@ -1,8 +1,8 @@
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
+from src.db import db_session
 from src.db.models import Conversation
-from src.db.session import db_session
 from src.interfaces import IRepository
 
 

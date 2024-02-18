@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from src.db.models.base import Base
 
@@ -11,3 +12,12 @@ engine = create_engine(
 
 def create_db() -> None:
     Base.metadata.create_all(bind=engine)
+
+
+def db_session():
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
