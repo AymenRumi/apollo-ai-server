@@ -8,6 +8,7 @@ from ..settings.db import SQLiteSettings
 engine = create_engine(
     SQLiteSettings().database_url, connect_args={"check_same_thread": False}
 )
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
 def create_db() -> None:
@@ -15,7 +16,6 @@ def create_db() -> None:
 
 
 def db_session():
-    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     db = SessionLocal()
     try:
         yield db
