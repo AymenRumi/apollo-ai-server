@@ -20,6 +20,12 @@ def add_chat(reposity: IRepository = Depends(get_chat_repository)):
     return JSONResponse(content={"chat_id": chat_id, "success": True}, status_code=200)
 
 
+@db_api.get("/chats")
+def get_chats(reposity: IRepository = Depends(get_chat_repository)):
+
+    return JSONResponse(content=reposity.get_all(), status_code=200)
+
+
 @db_api.get("/chats/{id}")
 def get_chat(id: int, repository: IRepository = Depends(get_chat_repository)):
 

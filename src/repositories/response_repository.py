@@ -16,18 +16,6 @@ class ResponseRepository(IRepository):
         self.session.commit()
         return entry.id
 
-    def get(self, _id):
-        pass
-
-    def get_all(self):
-        pass
-
-    def update():
-        pass
-
-    def delete():
-        pass
-
 
 def get_response_repository(db: Session = Depends(db_session)):
     return ResponseRepository(session=db)

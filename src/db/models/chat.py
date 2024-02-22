@@ -46,7 +46,11 @@ class Chat(Base):
     requests = relationship("Request", back_populates="chat")
 
     def get_details(self):
-        return {self.id, self.summary, self.time_created.isoformat()}
+        return {
+            "id": self.id,
+            "title": self.summary,
+            "time": self.time_created.isoformat(),
+        }
 
     def get_messages(self):
         return [message.get_request_response() for message in self.requests]
