@@ -45,6 +45,9 @@ class Chat(Base):
     summary = Column(String, default="New Chat")
     requests = relationship("Request", back_populates="chat")
 
+    def get_chat_details(self):
+        return {self.id, self.summary, self.time_created.isoformat()}
+
     def get_messages(self):
         return [message.get_request_response() for message in self.requests]
 
