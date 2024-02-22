@@ -17,14 +17,34 @@ class Request(Base):
     chat = relationship("Chat", back_populates="requests")
     response = relationship("Response", back_populates="request", uselist=False)
 
+    def get_request_response(self):
+        return {
+            "request": {
+                "query": self.query,
+                "time": self.time.isoformat(),
+                "id": self.id,
+            },
+            "response": {
+                "content": self.response.content,
+                "time": self.response.time.isoformat(),
+                "id": self.response.request_id,
+            }
+            if self.response
+            else None,
+        }
+
 
 class Chat(Base):
+
     __tablename__ = "chats"
 
     id = Column(Integer, primary_key=True, index=True)
     time_created = Column(DateTime, default=datetime.utcnow())
     summary = Column(String, default="New Chat")
     requests = relationship("Request", back_populates="chat")
+
+    def get_messages(self):
+        return [message.get_request_response() for message in self.requests]
 
 
 class Response(Base):
