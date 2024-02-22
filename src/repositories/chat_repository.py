@@ -23,7 +23,7 @@ class ChatRepository(IRepository):
             return None
 
     def get_all(self):
-        return Chat.query.all()
+        return [chat.get_details() for chat in Chat.query.all()]
 
     def update():
         pass
