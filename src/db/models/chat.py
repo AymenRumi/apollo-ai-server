@@ -31,6 +31,9 @@ class Request(Base):
             }
             if self.response
             else None,
+            "response_time": (self.response.time - self.time).total_seconds()
+            if self.response
+            else None,
         }
 
 
