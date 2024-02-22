@@ -2,25 +2,28 @@ from fastapi import Depends
 from sqlalchemy.orm import Session
 
 from src.db import db_session
-from src.db.models import Conversation
+from src.db.models import Chat
 from src.interfaces import IRepository
 
 
-class ConversationRepository(IRepository):
+class ChatRepository(IRepository):
     def __init__(self, session: Session):
         self.session = session
 
     def add(self):
-        entry = Conversation()
+        entry = Chat()
         self.session.add(entry)
         self.session.commit()
         return entry.id
 
-    def get(self, id):
-        return Conversation.query.filter_by(id=id).first()
+    def get(self, _id):
+        try:
+            return self.session.query(Chat).filter_by(id=_id).first()
+        except:
+            return None
 
     def get_all(self):
-        return Conversation.query.all()
+        return Chat.query.all()
 
     def update():
         pass
@@ -29,5 +32,5 @@ class ConversationRepository(IRepository):
         pass
 
 
-def get_conversation_repository(db: Session = Depends(db_session)):
-    return ConversationRepository(session=db)
+def get_chat_repository(db: Session = Depends(db_session)):
+    return ChatRepository(session=db)

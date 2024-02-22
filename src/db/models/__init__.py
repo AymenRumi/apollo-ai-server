@@ -1,2 +1,2 @@
 from .base import Base
-from .conversation import Conversation, Request, Response
+from .chat import Chat, Request, Response

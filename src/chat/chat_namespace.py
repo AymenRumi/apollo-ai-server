@@ -5,7 +5,7 @@ class ChatNamespace(socketio.AsyncNamespace):
     async def on_connect(self, sid, environ):
         print(f"{sid} connected to chat")
 
-    async def on_join_conversation(self, sid, data):
+    async def on_join_chat(self, sid, data):
         pass
 
     async def on_disconnect(self, sid):

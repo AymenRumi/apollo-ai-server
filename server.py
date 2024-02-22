@@ -6,7 +6,7 @@ from fastapi import FastAPI
 
 from src.chat import ChatNamespace
 from src.db import create_db
-from src.routes.db_route import db_api
+from src.routes.chat_route import db_api
 from src.settings import FastAPISettings
 
 
@@ -28,4 +28,9 @@ app.include_router(db_api)
 
 
 if __name__ == "__main__":
-    uvicorn.run(socket_app, host=FastAPISettings().host, port=FastAPISettings().port)
+    uvicorn.run(
+        "server:socket_app",
+        host=FastAPISettings().host,
+        port=FastAPISettings().port,
+        reload=True,
+    )
