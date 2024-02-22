@@ -35,7 +35,6 @@ class Request(Base):
 
 
 class Chat(Base):
-
     __tablename__ = "chats"
 
     id = Column(Integer, primary_key=True, index=True)
