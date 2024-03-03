@@ -1,1 +1,1 @@
-from .validate_model import pydantic
+from .validate_schema import pydantic

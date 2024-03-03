@@ -49,3 +49,6 @@ class AzureOpenAIFactory:
             .openai_api_version(settings.version)
             .build()
         )
+
+
+MODEL = AzureOpenAIFactory.create_model()
