@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 import socketio
 import uvicorn
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.chat import ChatNamespace
 from src.db import create_db
@@ -17,6 +18,17 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
+
+
+# CORS middleware configuration
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 sio = socketio.AsyncServer(async_mode="asgi", cors_allowed_origins="*")
 
