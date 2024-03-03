@@ -6,7 +6,7 @@ from fastapi import FastAPI
 
 from src.chat import ChatNamespace
 from src.db import create_db
-from src.routes.chat_route import db_api
+from src.routes import base_api, db_api
 from src.settings import FastAPISettings
 
 
@@ -24,7 +24,9 @@ socket_app = socketio.ASGIApp(socketio_server=sio, other_asgi_app=app)
 
 sio.register_namespace(ChatNamespace("/chat"))
 
-app.include_router(db_api)
+
+for route in [base_api, db_api]:
+    app.include_router(route)
 
 
 if __name__ == "__main__":

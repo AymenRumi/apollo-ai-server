@@ -25,6 +25,12 @@ class ChatRepository(IRepository):
     def get_all(self):
         return [chat.get_details() for chat in self.session.query(Chat).all()]
 
+    def delete(self, args, **kwargs):
+        return super().delete(args, **kwargs)
+
+    def update(self, args, **kwargs):
+        return super().update(args, **kwargs)
+
 
 def get_chat_repository(db: Session = Depends(db_session)):
     return ChatRepository(session=db)
