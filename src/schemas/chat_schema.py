@@ -5,7 +5,7 @@ from pydantic_settings import BaseSettings
 
 class Request(BaseSettings):
     request: str
-    document: str
+    chat_id: int
 
 
 class Response(BaseSettings):

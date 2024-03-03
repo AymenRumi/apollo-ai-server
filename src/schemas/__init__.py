@@ -1,1 +1,1 @@
-from .chat_schema import Chat
+from .chat_schema import Request
