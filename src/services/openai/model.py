@@ -45,7 +45,7 @@ class AzureOpenAIFactory:
         settings = OpenAISettings()
         return (
             AzureOpenAIBuilder()
-            .deployment_name(settings.deployment)
+            .deployment_name(settings.model_deployment)
             .openai_api_version(settings.version)
             .build()
         )

@@ -2,6 +2,7 @@ import socketio
 
 from src.decorator import pydantic
 from src.schemas import Request
+from src.services.rag import handle_request
 
 
 class ChatNamespace(socketio.AsyncNamespace):
@@ -18,4 +19,5 @@ class ChatNamespace(socketio.AsyncNamespace):
     async def on_chat_message(self, sid, request: Request):
         print(f"Message from {sid}: {request}")
         print(request.chat_id)
-        await self.emit("chat_reply", "hello", to=sid)
+        response = handle_request(request.request)
+        await self.emit("chat_reply", response, to=sid)
