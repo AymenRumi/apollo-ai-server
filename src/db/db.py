@@ -11,13 +11,14 @@ engine = create_engine(
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+db = SessionLocal()
+
 
 def create_db() -> None:
     Base.metadata.create_all(bind=engine)
 
 
 def db_session():
-    db = SessionLocal()
     try:
         yield db
     finally:
