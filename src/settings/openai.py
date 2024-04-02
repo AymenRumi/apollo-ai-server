@@ -12,7 +12,7 @@ class OpenAISettings(BaseSettings):
     endpoint: str
     key: str
     version: str
-    model_deployment: str
+    deployment: str
 
     class Config:
         env_prefix = "OPENAI_API_"

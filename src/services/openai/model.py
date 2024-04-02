@@ -41,11 +41,11 @@ class AzureOpenAIBuilder:
 
 class AzureOpenAIFactory:
     @staticmethod
-    def create_model() -> AzureOpenAI:
+    def create_model():
         settings = OpenAISettings()
         return (
             AzureOpenAIBuilder()
-            .deployment_name(settings.model_deployment)
+            .deployment_name(settings.deployment)
             .openai_api_version(settings.version)
             .build()
         )
